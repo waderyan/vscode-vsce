@@ -170,7 +170,7 @@ export function unpublish(publisher: string, name: string, options: IPublishOpti
 			? Promise.resolve(options.pat)
 			: getPublisher(publisher).then(p => p.pat);
 
-		return read(`This will FOREVER delete '${ fullName }'! Are you sure? [y/N] `)
+		return read(`This will remove '${ fullName }' from the marketplace! Are you sure? [y/N] `)
 			.then(answer => /^y$/i.test(answer) ? null : Promise.reject('Aborted'))
 			.then(() => pat)
 			.then(getRawGalleryAPI)
